@@ -10,6 +10,7 @@ function newLocation(rovers) {
   const compassPoints = ["N", "S", "W", "E"];
   const robotData = rovers.slice(1);
   let newRoverPosition = [];
+  let robots = new Set();
 
   const leftTurn = new Map();
   leftTurn.set("N", "W");
@@ -49,44 +50,68 @@ function newLocation(rovers) {
         }
         if (subStep == "M") {
           switch (tempFacing) {
-            case "N": {
-              if (robotPositions[0][1] + 1 > plateauSize[1])
-                throw new Error("New position outside boundary of Plateau");
-              else {
-                tempPosition = [
-                  robotPositions[0][0],
-                  (robotPositions[0][1]+1),
-                ];
+            case "N":
+              {
+                if (robotPositions[0][1] + 1 > plateauSize[1])
+                  throw new Error("New position outside boundary of Plateau");
+                else if (robots.has(tempPosition.join("")))
+                  throw new Error("Rover clashes with another rover");
+                else {
+                  tempPosition = [
+                    robotPositions[0][0],
+                    robotPositions[0][1] + 1,
+                  ];
+                }
               }
-            } break;
-            case "E": {
-              if (robotPositions[0][0] + 1 > plateauSize[0])
-                throw new Error("New position outside boundary of Plateau");
-              else {
-                tempPosition = [
-                  (robotPositions[0][0]+1),
-                  robotPositions[0][1]
-                ];
+              break;
+            case "E":
+              {
+                if (robotPositions[0][0] + 1 > plateauSize[0])
+                  throw new Error("New position outside boundary of Plateau");
+                else if (robots.has(tempPosition.join("")))
+                  throw new Error("Rover clashes with another rover");
+                else {
+                  tempPosition = [
+                    robotPositions[0][0] + 1,
+                    robotPositions[0][1],
+                  ];
+                }
               }
-            } break;
-            case "S":{
-              if (robotPositions[0][1] - 1 < 0)
-                throw new Error ("New position outside boundary of Plateau");
-              else {
-                tempPosition = [robotPositions[0][0],(robotPositions[0][1]-1)]
+              break;
+            case "S":
+              {
+                if (robotPositions[0][1] - 1 < 0)
+                  throw new Error("New position outside boundary of Plateau");
+                else if (robots.has(tempPosition.join("")))
+                  throw new Error("Rover clashes with another rover");
+                else {
+                  tempPosition = [
+                    robotPositions[0][0],
+                    robotPositions[0][1] - 1,
+                  ];
+                }
               }
-          } break;
-          case "W":{
-            if (robotPositions[0][0] - 1 < 0)
-              throw new Error ("New position outside boundary of Plateau");
-            else {
-              tempPosition = [(robotPositions[0][0]-1),robotPositions[0][1]]
-            }
-        } break;
+              break;
+            case "W":
+              {
+                if (robotPositions[0][0] - 1 < 0)
+                  throw new Error("New position outside boundary of Plateau");
+                else if (robots.has(tempPosition.join("")))
+                  throw new Error("Rover clashes with another rover");
+                else {
+                  tempPosition = [
+                    robotPositions[0][0] - 1,
+                    robotPositions[0][1],
+                  ];
+                }
+              }
+              break;
           }
         }
-      }); newRoverPosition= tempPosition.concat(tempFacing);
-    }); 
+      });
+      newRoverPosition.push(tempPosition.concat(tempFacing));
+      robots.add(tempPosition.join(""));
+    });
   return newRoverPosition;
 }
 
