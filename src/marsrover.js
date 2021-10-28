@@ -3,7 +3,7 @@ function newLocation(rovers) {
   if (rovers[0].length !== 2) throw new Error("Plateau size not valid");
   if (isNaN(rovers[0][0]) || isNaN(rovers[0][1]))
     throw new Error("Invalid size for Plateau");
-  if (rovers.length % 2 == 1) throw new Error("Invalid instructions supplied");
+  //if (rovers.length % 2 == 1) throw new Error("Invalid instructions supplied");
   const notValid = /[^LRM]/g;
   const noMovement = /[M]/g;
   const plateauSize = rovers[0];
@@ -42,37 +42,39 @@ function newLocation(rovers) {
       let tempPosition = [robotPositions[0][0], robotPositions[0][1]];
 
       steps.forEach((subStep) => {
-        if (subStep == "L") {
+        if (subStep === "L") {
           tempFacing = leftTurn.get(tempFacing);
         }
-        if (subStep == "R") {
+        if (subStep === "R") {
           tempFacing = rightTurn.get(tempFacing);
         }
-        if (subStep == "M") {
+        if (subStep === "M") {
           switch (tempFacing) {
             case "N":
               {
-                if (robotPositions[0][1] + 1 > plateauSize[1])
+                robotPositions[0][1] +=1;
+                if (robotPositions[0][1] > plateauSize[1])
                   throw new Error("New position outside boundary of Plateau");
                 else if (robots.has(tempPosition.join("")))
                   throw new Error("Rover clashes with another rover");
                 else {
                   tempPosition = [
                     robotPositions[0][0],
-                    robotPositions[0][1] + 1,
+                    robotPositions[0][1],
                   ];
                 }
               }
               break;
             case "E":
               {
-                if (robotPositions[0][0] + 1 > plateauSize[0])
+                robotPositions[0][0] +=1;
+                if (robotPositions[0][0] > plateauSize[0])
                   throw new Error("New position outside boundary of Plateau");
                 else if (robots.has(tempPosition.join("")))
                   throw new Error("Rover clashes with another rover");
                 else {
                   tempPosition = [
-                    robotPositions[0][0] + 1,
+                    robotPositions[0][0],
                     robotPositions[0][1],
                   ];
                 }
@@ -80,27 +82,29 @@ function newLocation(rovers) {
               break;
             case "S":
               {
-                if (robotPositions[0][1] - 1 < 0)
+                robotPositions[0][1] -=1;
+                if (robotPositions[0][1] < 0)
                   throw new Error("New position outside boundary of Plateau");
                 else if (robots.has(tempPosition.join("")))
                   throw new Error("Rover clashes with another rover");
                 else {
                   tempPosition = [
                     robotPositions[0][0],
-                    robotPositions[0][1] - 1,
+                    robotPositions[0][1],
                   ];
                 }
               }
               break;
             case "W":
               {
-                if (robotPositions[0][0] - 1 < 0)
+                robotPositions[0][0] -=1;
+                if (robotPositions[0][0] < 0)
                   throw new Error("New position outside boundary of Plateau");
                 else if (robots.has(tempPosition.join("")))
                   throw new Error("Rover clashes with another rover");
                 else {
                   tempPosition = [
-                    robotPositions[0][0] - 1,
+                    robotPositions[0][0],
                     robotPositions[0][1],
                   ];
                 }

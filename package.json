@@ -19,5 +19,9 @@
   "homepage": "https://github.com/bikerJas/Mars_rover_kata_exercise#readme",
   "dependencies": {
     "jest": "^27.3.1"
-  }
+  },
+  "jest": {
+    "testEnvironment": "node"
+ }
+ 
 }
