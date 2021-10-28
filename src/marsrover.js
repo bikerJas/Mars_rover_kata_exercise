@@ -2,8 +2,7 @@ function newLocation(rovers) {
   if (!rovers) throw new Error("No co-ordinates supplied for rovers");
   if (rovers[0].length !== 2) throw new Error("Plateau size not valid");
   if (isNaN(rovers[0][0]) || isNaN(rovers[0][1]))
-    throw new Error("Invalid size for Plateau");
-  //if (rovers.length % 2 == 1) throw new Error("Invalid instructions supplied");
+    throw new Error("Invalid data for Plateau");
   const notValid = /[^LRM]/g;
   const noMovement = /[M]/g;
   const plateauSize = rovers[0];
