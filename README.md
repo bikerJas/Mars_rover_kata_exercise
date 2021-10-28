@@ -16,11 +16,11 @@ they are facing, i.e. (0,0,N) would mean the Rover is at the bottom left of the 
 A Rover is sent instructions to move around the plateau by being sent a string of letters which have the following 
 meaning:-
 
-Letter      Action
---------|----------
-L   |   Spins the Rover 90 degrees Left from it's current orientation
-R   |   Spins the Rover 90 degress Right from it's current orientation
-M   |   Moves the Rover forward by one grid position in the current orientation
+Letter  ¦   Action
+--------¦----------
+L   ¦   Spins the Rover 90 degrees Left from it's current orientation
+R   ¦   Spins the Rover 90 degress Right from it's current orientation
+M   ¦   Moves the Rover forward by one grid position in the current orientation
 
 ## Approaches
 
