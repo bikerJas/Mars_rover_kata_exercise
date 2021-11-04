@@ -60,4 +60,13 @@ describe("newLocation", () => {
       newLocation(rovers);
     }).toThrow("No steps supplied for new rover position");
   });
+
+  test("returns error if steps for new destination contain invalid characters", () => {
+    expect(() => {
+      const rovers = [[5,5], [[1, 2, "N"], ["LMLMLPLMM"]]];
+      newLocation(rovers);
+    }).toThrow("Not a valid set of new rover destination instructions");
+  });
+
 });
+
