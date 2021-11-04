@@ -9,6 +9,7 @@ function roverValidate(robotPositions) {
     throw new Error("Invalid starting coordinates for rover");
   if (!compassPoints.includes(robotPositions[0][2]))
     throw new Error("Rover's direction positioning is invalid");
+    
 }
 
 module.exports = roverValidate;

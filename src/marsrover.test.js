@@ -9,41 +9,55 @@ describe("newLocation", () => {
 
   test("returns error if plateau size data is invalid", () => {
     expect(() => {
-      const rovers = [[5],[[1,2,"N"],["LMLMLMLMM"]]]
+      const rovers = [[5], [[1, 2, "N"], ["LMLMLMLMM"]]];
       newLocation(rovers);
     }).toThrow("Plateau size not valid");
   });
-  
+
   test("returns error if plateau size data is not a number", () => {
     expect(() => {
-      const rovers = [[5,"S"],[[1,2,"N"],["LMLMLMLMM"]]]
+      const rovers = [
+        [5, "S"],
+        [[1, 2, "N"], ["LMLMLMLMM"]],
+      ];
       newLocation(rovers);
     }).toThrow("Invalid data for Plateau");
   });
 
   test("returns error if rover starting position is invalid", () => {
     expect(() => {
-      const rovers = [[5,5],[[1,2],["LMLMLMLMM"]]]
+      const rovers = [
+        [5, 5],
+        [[1, 2], ["LMLMLMLMM"]],
+      ];
       newLocation(rovers);
     }).toThrow("Rover coordinates invalid");
   });
 
   test("returns error if rover starting position co-ordinates are invalid", () => {
     expect(() => {
-      const rovers = [[5,5],[["C",2,"N"],["LMLMLMLMM"]]]
+      const rovers = [
+        [5, 5],
+        [["C", 2, "N"], ["LMLMLMLMM"]],
+      ];
       newLocation(rovers);
     }).toThrow("Invalid starting coordinates for rover");
   });
 
   test("returns error if rover is missing direction facing data", () => {
     expect(() => {
-      const rovers = [[5,5],[[1,2,"T"],["LMLMLMLMM"]]]
+      const rovers = [
+        [5, 5],
+        [[1, 2, "T"], ["LMLMLMLMM"]],
+      ];
       newLocation(rovers);
     }).toThrow("Rover's direction positioning is invalid");
   });
 
-
-
+  test("returns error if no new steps supplied for new rover position", () => {
+    expect(() => {
+      const rovers = [[5, 5], [[1, 2, "N"]]];
+      newLocation(rovers);
+    }).toThrow("No steps supplied for new rover position");
+  });
 });
-
-
