@@ -35,6 +35,14 @@ describe("newLocation", () => {
     }).toThrow("Invalid starting coordinates for rover");
   });
 
+  test("returns error if rover is missing direction facing data", () => {
+    expect(() => {
+      const rovers = [[5,5],[[1,2,"T"],["LMLMLMLMM"]]]
+      newLocation(rovers);
+    }).toThrow("Rover's direction positioning is invalid");
+  });
+
+
 
 });
 
