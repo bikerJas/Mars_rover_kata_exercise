@@ -20,5 +20,15 @@ describe("newLocation", () => {
       newLocation(rovers);
     }).toThrow("Invalid data for Plateau");
   });
+
+  test("returns error if rover starting position is invalid", () => {
+    expect(() => {
+      const rovers = [[5,5],[[1,2],["LMLMLMLMM"]]]
+      newLocation(rovers);
+    }).toThrow("Rover coordinates invalid");
+  });
+
+
 });
+
 
