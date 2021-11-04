@@ -1,8 +1,10 @@
-const newLocation = require("./marsrover");
+const newLocation = require("./marsrover.js");
 
 describe("newLocation", () => {
-  test("returns array of new locations", () => {
-    const rovers = [[5,5],[[1,2,"N"],["LMLMLMLMM"]],[[3,3,"E"],["MMRMMRMRRM"]]]
-    expect(newLocation(rovers)).toEqual([[1, 3, "N"],[5, 1, "E"]]);
+  test("returns error if no rover data supplied", () => {
+    expect(() => {
+      newLocation();
+    }).toThrow("No co-ordinates supplied for rovers");
   });
 });
+
