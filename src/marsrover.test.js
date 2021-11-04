@@ -28,6 +28,13 @@ describe("newLocation", () => {
     }).toThrow("Rover coordinates invalid");
   });
 
+  test("returns error if rover starting position co-ordinates are invalid", () => {
+    expect(() => {
+      const rovers = [[5,5],[["C",2,"N"],["LMLMLMLMM"]]]
+      newLocation(rovers);
+    }).toThrow("Invalid starting coordinates for rover");
+  });
+
 
 });
 
