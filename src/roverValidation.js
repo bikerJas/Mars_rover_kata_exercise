@@ -11,6 +11,8 @@ function roverValidate(robotPositions) {
     throw new Error("Rover's direction positioning is invalid");
   if (!robotPositions[1])
     throw new Error("No steps supplied for new rover position");
+  if (robotPositions[1].toString().match(notValid) !== null)
+    throw new Error("Not a valid set of new rover destination instructions");
 }
 
 module.exports = roverValidate;
