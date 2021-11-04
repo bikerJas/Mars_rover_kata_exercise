@@ -5,6 +5,8 @@ function roverValidate(robotPositions) {
 
   if (robotPositions[0].length !== 3)
     throw new Error("Rover coordinates invalid");
+  if (isNaN(robotPositions[0][0]) || isNaN(robotPositions[0][1]))
+    throw new Error("Invalid starting coordinates for rover");
 }
 
 module.exports = roverValidate;
