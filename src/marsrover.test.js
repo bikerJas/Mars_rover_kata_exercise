@@ -68,5 +68,13 @@ describe("newLocation", () => {
     }).toThrow("Not a valid set of new rover destination instructions");
   });
 
+  test("returns error if steps for new destination contain no forward movement", () => {
+    expect(() => {
+      const rovers = [[5,5], [[1, 2, "N"], ["LRLRLLLRR"]]];
+      newLocation(rovers);
+    }).toThrow("Rover does not move");
+  });
+
+
 });
 
