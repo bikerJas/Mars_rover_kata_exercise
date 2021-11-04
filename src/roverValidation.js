@@ -13,6 +13,8 @@ function roverValidate(robotPositions) {
     throw new Error("No steps supplied for new rover position");
   if (robotPositions[1].toString().match(notValid) !== null)
     throw new Error("Not a valid set of new rover destination instructions");
+  if (robotPositions[1].toString().match(noMovement) == null)
+    throw new Error("Rover does not move");
 }
 
 module.exports = roverValidate;
